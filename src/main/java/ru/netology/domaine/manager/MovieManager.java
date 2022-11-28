@@ -31,7 +31,7 @@ public class MovieManager {
         tmp[lastIndex] = movie;
         moviesList = tmp;
     }
-    public DataClass[] findAll(){
+    public DataClass[] findAll(){ //показать все фильмы
         return moviesList;
     }
 
