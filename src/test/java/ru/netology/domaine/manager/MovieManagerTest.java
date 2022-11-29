@@ -57,6 +57,8 @@ class MovieManagerTest {
 
         DataClass[] expected = {ten,third,first};
         DataClass[] actual = manager.findLast();
+
+        assertArrayEquals(expected,actual);
     }
     @Test
     void findLastWhereCountMoreLimit() { // показать последние добавленные , если в добавленных фильмов больше лимита
