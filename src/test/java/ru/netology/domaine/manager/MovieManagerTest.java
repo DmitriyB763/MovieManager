@@ -5,8 +5,8 @@ import ru.netology.domaine.data.DataClass;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MovieManagerTest {
-    MovieManager manager = new MovieManager();
+class MovieRepositoryTest {
+    MovieRepository manager = new MovieRepository();
     DataClass first = new DataClass("вперед", "комедия", 1);
     DataClass second = new DataClass("бладшот", "боевик", 2);
     DataClass third = new DataClass("отель белград", "боевик", 3);
@@ -33,7 +33,7 @@ class MovieManagerTest {
 
         manager.addMovie(ten);
 
-        DataClass[] expected = {first, second, third,four,five,six,seven,eight,nine,ten};
+        DataClass[] expected = {first, second, third, four, five, six, seven, eight, nine, ten};
         DataClass[] actual = manager.findAll();
 
         assertArrayEquals(expected, actual);
@@ -45,7 +45,7 @@ class MovieManagerTest {
         DataClass[] expected = {};
         DataClass[] actual = manager.findAll();
 
-        assertArrayEquals(expected,actual);
+        assertArrayEquals(expected, actual);
 
     }
 
@@ -55,11 +55,12 @@ class MovieManagerTest {
         manager.addMovie(third);
         manager.addMovie(ten);
 
-        DataClass[] expected = {ten,third,first};
+        DataClass[] expected = {ten, third, first};
         DataClass[] actual = manager.findLast();
 
-        assertArrayEquals(expected,actual);
+        assertArrayEquals(expected, actual);
     }
+
     @Test
     void findLastWhereCountMoreLimit() { // показать последние добавленные , если в добавленных фильмов больше лимита
         manager.addMovie(first);
@@ -74,10 +75,35 @@ class MovieManagerTest {
         manager.addMovie(ten);
         manager.addMovie(eleven);
 
-        DataClass[] expected = {eleven,ten,nine,eight,seven,six,five,four,third,second};
+        DataClass[] expected = {eleven, ten, nine, eight, seven, six, five, four, third, second};
         DataClass[] actual = manager.findLast();
 
-        assertArrayEquals(expected,actual);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void findId() {
+        manager.addMovie(first);
+        manager.addMovie(second);
+        manager.addMovie(third);
+
+       DataClass movie = manager.findById(2);
+        DataClass expected = second;
+
+        assertEquals(expected, movie);
+
+    }
+    @Test
+    void findIdWhenIdMissing() {
+        manager.addMovie(first);
+        manager.addMovie(second);
+        manager.addMovie(third);
+
+        DataClass movie = manager.findById(15);
+        DataClass expected = null;
+
+        assertEquals(expected, movie);
+
     }
 
 }
